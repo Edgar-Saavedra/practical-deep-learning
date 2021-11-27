@@ -96,24 +96,24 @@ we index an entry by column and row
 
 - If a vaule is not found the multiplication  = undefined
 - Many dimensions (3-4) we have a CNN also referred to as `tensor` a "stack" of matrices
-- *mean* "artihmetic average We add all values together divide by # of values
-- *standard of error of the mean*  This is the +/- qauntities from the mean. This comes along with the mean.
-- *average spread* substract each value from the mean. Square each result. Add all the square values, divide by number of values we added minus 1.
-- *variance* the number we get from the `average spread`.
-- *standard deviation* take square root of `variance` 
-- *median* the middle value, half of samples are above, half are below. 2 ways to get median: Sort the values numerically, find middle value. Great if we have odd number values, or  we take the  mean of 2 values. Median is sometimes better than the mean if the samples dont have a good even spread around the mean.
-- *descriptive statistics* values derived from a dataset that can be used to understand the dataset.
-- *probability distribution* the place where the numbers from the `descriptive statistics` come from aka *parent distribution* "the thing that generates the data we'll feed our model. The ideal set of data our data is approximating.
-- 2 types of "paren distributions" *uniform* and *normal distributions*
-- *uniform* where the results are representative of each sample equally. An oracle that will give us any of its allowed responses in a range in a equally weighted fashion.
-- *normal distributions*  (Guassian Distribution). Visually a bell curve. Where 1 value is most likely. The likelihood of the other values decreases as one gets further from the most likely value. This most likely value is the `mean`. How fast our likelihood to get to non mean values goes to 0.
-- *standard deviation* (noted as sigma) Is also the number that tells us how quickly the likelihood drops to zero (but never really reaches it)
-- *statistical test* Measurement used to decide if a hypothesis is true or not. 
+- **mean** "artihmetic average We add all values together divide by # of values
+- **standard of error of the mean**  This is the +/- qauntities from the mean. This comes along with the mean. The standard deviation divided by the square root of the number of values that went into the mean
+- **average spread** substract each value from the mean. Square each result. Add all the square values, divide by number of values we added minus 1.
+- **variance** the number we get from the `average spread`.
+- **standard deviation** take square root of `variance` . A measure of how the values differ from the mean. Large standard deviation means that the values are spread over a broad range.
+- **median** the middle value, half of samples are above, half are below. 2 ways to get median: Sort the values numerically, find middle value. Great if we have odd number values, or  we take the  mean of 2 values. Median is sometimes better than the mean if the samples dont have a good even spread around the mean.
+- **descriptive statistics** values derived from a dataset that can be used to understand the dataset.
+- **probability distribution** the place where the numbers from the `descriptive statistics` come from aka **parent distribution** "the thing that generates the data we'll feed our model. The ideal set of data our data is approximating.
+- 2 types of "paren distributions" **uniform** and **normal distributions**
+- **uniform** where the results are representative of each sample equally. An oracle that will give us any of its allowed responses in a range in a equally weighted fashion.
+- **normal distributions**  (Guassian Distribution). Visually a bell curve. Where 1 value is most likely. The likelihood of the other values decreases as one gets further from the most likely value. This most likely value is the `mean`. How fast our likelihood to get to non mean values goes to 0.
+- **standard deviation** (noted as sigma) Is also the number that tells us how quickly the likelihood drops to zero (but never really reaches it)
+- **statistical test** Measurement used to decide if a hypothesis is true or not. 
   We want to see if 2 sets of measurments are from the same parent distribution. If statistic  calculated is outside of a certain range we reject the hypothesis.
-- *t test* (statistical test) Assumes our data is normally distributed. Since this assumption may or may not be true it is known as a "parametric test"
-- *Mann - Whitney U test*  it helps us decide if two samples are from the same parent distribution but makes no assumptiona bout how the data values in the sample are distributed. It is known as `nonparametric test`
-- *p value* value we get from parametric and nonparametric tests. If low (0.05 aka 1 in 20) we assume the hypothesis is not true. We now lowered the tresh hold 0.001 anything under that is "statistically significant"
-- *GPU (graphics processing units)* Co-computers implemented on a graphics card. For video gaming. Used for NN models. NVIDIA the leader in creation of GPUs for deep learning via its Compute Unified Device Architecture (CUDA). There are different versions of Tensorflow to work with deep learning either on CPU or GPU.
+- **t test** (statistical test) Assumes our data is normally distributed. Since this assumption may or may not be true it is known as a "parametric test"
+- **Mann - Whitney U test**  it helps us decide if two samples are from the same parent distribution but makes no assumptiona bout how the data values in the sample are distributed. It is known as `nonparametric test`
+- **p value** value we get from parametric and nonparametric tests. If low (0.05 aka 1 in 20) we assume the hypothesis is not true. We now lowered the tresh hold 0.001 anything under that is "statistically significant"
+- **GPU (graphics processing units)** Co-computers implemented on a graphics card. For video gaming. Used for NN models. NVIDIA the leader in creation of GPUs for deep learning via its Compute Unified Device Architecture (CUDA). There are different versions of Tensorflow to work with deep learning either on CPU or GPU.
 
 ### Multiplying Vectors
 - need to know if either row or column vectors

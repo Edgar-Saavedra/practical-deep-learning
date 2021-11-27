@@ -1,0 +1,11 @@
+import numpy as np
+a = np.loadtxt("abc.txt")
+print(a)
+a = np.loadtxt("abc.csv", delimiter=",")
+print(a, a.shape)
+a = np.arange(9).reshape((3,3))
+np.save("abc", a)
+b = np.load("abc.npy")
+print(b, b.shape)
+np.savetxt("ABC.txt", b)
+np.savetxt("ABC.csv", b, delimiter=",")
