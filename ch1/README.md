@@ -25,7 +25,8 @@
 # Install Python 3 that will be managed by Homebrew
 brew install python3
 # Get access to the scientific Python formulas
-brew tap Homebrew/python
+
+$ brew tap Homebrew/python
 $ brew install scipy
 $ brew install ipython
 $ brew install jupyter
