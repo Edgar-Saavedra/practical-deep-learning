@@ -37,12 +37,11 @@ $ pip3 install pillow
 $ pip3 install h5py
 $ pip3 install keras
 ```
-
-- pillow: image processing
-- h5py : for working with HDF5 data files (scientific data)
-- matplotlib: for plotting
-
 `brew install python3; brew tap Homebrew/python; brew install scipy; brew install ipython; brew install jupyter; brew install numpy; brew install matplotlib ; pip3 install scikit-learn; pip3 install pillow; pip3 install h5py; pip3 install keras`
+
+- **pillow**: image processing
+- **h5py** : for working with HDF5 data files (scientific data)
+- **matplotlib**: for plotting
 
 Machine learning is about building models that take input and arrive at a conclusion. The conclusion could be labeled to classify. The models learns on its own and learns by example. A model is y = f(x). Y is the continuous `class label` output. x is the `features` "unknown input" . Features are also measurements of the input that the model can use to learn what output to generate. f in y=f(x) is our algorithm or mapping for an unknow x and y. The machine is learning the parameters of the model. We are not cementing this algorithm, sometimes in NNs its hard to know the machine has learned.
 
