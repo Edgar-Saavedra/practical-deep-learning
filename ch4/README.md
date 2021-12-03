@@ -66,3 +66,29 @@
 - Classical data sometimes dont learn as well. So need more test data. try 80% training, 10% validation & testing or 20% testing.
   - Larger test sets might be appropriate for multiclass model that have classes with low probabilities.
 
+## Steps to produce training, validation and test splits
+- **Randomize** the order of the full datase, so classes are evenly mixed
+- **Calculate number of samples** in training (ntrn) and valdation (nval) by multiplying the number of samples in the full dataset by the desired fraction. Remaining will fall into the test set
+- Assign the first ntrn samples to the training set
+- Assign the next nval samples to the validation set
+- Assin the remining samples to test set
+NOTE: See `4-1.py, 4-2.py`
+
+## K-Fold Cross Validation
+- Technique to ensure each sample in the dataset is used at some point for training and testing.
+- For small dataset in traditional learning models.
+- Helpful to decide between models
+- Steps
+  1. Pratition full, randomized dataset into "k" non-overlapping groups. Your "k" is arbitrary but ranges from 5-10
+  2. Holdback x_0 as test data. Ignore validation for now. 
+  3. Holback from of training for new model m_0
+  4. Do same and call new model m_1
+  5. We end up with mulitple instances of the same type of model trained with different subsets of the full dataset.
+  6. Repeate this process for each group (test, validation, training)
+  7. We'll end up with "k" models trained with (k-1)/k of the data each, holding 1/k of the data back for testing.
+  8. Larger k means more training and less test data. If training time is low, tend toward a larger k.
+  9. Evaluate the models individually to get an ide of the how a model trained on a full dataset.
+  10. Repeate for each type of model and compare results.
+  11. We can start over gain and train teh selected modle type using all of the dataset for training.
+
+## Searching for problems in data
