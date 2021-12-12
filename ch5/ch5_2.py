@@ -20,6 +20,10 @@ def getData():
   return lines
 
 def getStandardizedVersion(features):
+  """Standardization/Normalizing should be done on most datasets (especially when using a traditionalmodel). So the features have 0 mean and standard ddeviation of 1"""
+  # The mean of 0 and standard deviation of 1 usually applies to the standard normal distribution, 
+  # often called the bell curve. The most likely value is the mean and it falls off as you get 
+  # farther away. If you have a truly flat distribution then there is no value more likely than another.
   standard = (features - features.mean(axis=0)) / features.std(axis=0)
   print("getStandardizedVersion", standard)
   return standard
