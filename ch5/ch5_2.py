@@ -33,10 +33,10 @@ def save(features, features_standardized, labels):
   np.save("/Users/esaavedra/Work/personal/projects/practical-deep-learning/ch5/bc_features_standard.npy", features_standardized)
   np.save("/Users/esaavedra/Work/personal/projects/practical-deep-learning/ch5/bc_labels.npy", labels)
   
-def plot(vector):
-  if (type(vector).__module__ != np.__name__):
-    vector = np.array(vector)
-  plt.boxplot(vector)
+def plot(features):
+  if (type(features).__module__ != np.__name__):
+    features = np.array(features)
+  plt.boxplot(features)
   plt.show()
 
 def run():
