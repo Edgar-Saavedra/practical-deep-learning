@@ -100,7 +100,7 @@ we index an entry by column and row
 - **standard of error of the mean**  This is the +/- qauntities from the mean. This comes along with the mean. The standard deviation divided by the square root of the number of values that went into the mean
 - **average spread** substract each value from the mean. Square each result. Add all the square values, divide by number of values we added minus 1.
 - **variance** the number we get from the `average spread`.
-- **standard deviation** take square root of `variance` . A measure of how the values differ from the mean. Large standard deviation means that the values are spread over a broad range.
+- **standard deviation** take square root of `variance` . **A measure of how the values differ from the mean**. Large standard deviation means that the values are spread over a broad range.
 - **median** the middle value, half of samples are above, half are below. 2 ways to get median: Sort the values numerically, find middle value. Great if we have odd number values, or  we take the  mean of 2 values. Median is sometimes better than the mean if the samples dont have a good even spread around the mean.
 - **descriptive statistics** values derived from a dataset that can be used to understand the dataset.
 - **probability distribution** the place where the numbers from the `descriptive statistics` come from aka **parent distribution** "the thing that generates the data we'll feed our model. The ideal set of data our data is approximating.

@@ -48,8 +48,8 @@
   - **Mean Centering** Subtract the mean (average) value of the features over the entire dataset (sum each value divided by the number of values). We are shifiting data down toward 0.
     - **For images** mean centering is often done by substracting a mean image from each input image *Look more into this*
   - **Changing Standard deviation to 1** To spread the values around the mean. AKA **standardization/normalizing**
-    - Whenever possible standardize dataset so that the features have 0 mean and standard deviation of 1.
-    - ---> `x = (x - x.mean(axis=0)) / xstd(axis=0)` <---
+    - Whenever possible **standardize dataset** so that the features have 0 mean and standard deviation of 1.
+    - ---> `(features - features.mean(axis=0)) / features.std(axis=0)` <---
 - **Missing Features** sometimes we dont have all the features we need.
   - *Solution 1* Fill in missing values with values that are outside features range. Hope is model will learn to ignore that. Putting to 0.
   - *Solution 2* Replace with the mean value over the dataset. This allows us to standardize
