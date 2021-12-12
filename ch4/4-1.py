@@ -1,3 +1,5 @@
+# SCALING DATA
+
 # If there are 9,000 samples from class 0
 # 1000 samples for class 1. 
 # We want to put 90%  of data into training 5% each validation/test at random

@@ -37,7 +37,7 @@ $ pip3 install pillow
 $ pip3 install h5py
 $ pip3 install keras
 ```
-`brew install python3; brew tap Homebrew/python; brew install scipy; brew install ipython; brew install jupyter; brew install numpy; brew install matplotlib ; pip3 install scikit-learn; pip3 install pillow; pip3 install h5py; pip3 install keras`
+`brew install python3; brew tap Homebrew/python; brew install scipy; brew install ipython; brew install jupyter; brew install numpy; brew install matplotlib ; pip3 install scikit-learn; pip3 install pillow; pip3 install h5py; pip3 install keras; ip3 install matplotlib`
 
 - **pillow**: image processing
 - **h5py** : for working with HDF5 data files (scientific data)

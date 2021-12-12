@@ -92,3 +92,18 @@ NOTE: See `4-1.py, 4-2.py`
   11. We can start over gain and train teh selected modle type using all of the dataset for training.
 
 ## Searching for problems in data
+- When summarizing values statistically we look at the **mean** (largest value) and **standard deviation** (smallest value)
+- Sort the values from smallest to largest
+- **standard error (ofthe mean)** The standard deviation divided by the square root of the number of the values of the dataset
+  - It is s the measure of the difference between our mean value and the mean value of the parent distribution
+  - we will have a better sense of the parent distribution
+  - **we could resonably replace the missing values** by the mean (or median)
+
+- Look at the data. Goal is to represent parent distribution.
+
+## Summary
+- Components of dataset : Classes, Labels, Features, Feature Vectors
+- Good data set: emphasizing the parent distribution
+- Basic data prepartion techniques: 
+  - Scale dat
+  - dealing with missing features.
