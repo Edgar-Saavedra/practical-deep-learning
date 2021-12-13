@@ -37,3 +37,17 @@
   - 6000 samples in each class
   - Training set contains 50,000
   - TEst set contains 10,000
+
+## DATA Augmentation
+- We need Models to **interpolate**
+- **Data Augmentation** should be used whereever its feasible and small dataset
+  - Take data we already have and modify it to create a new sample that could have plausibly come from the same parent distribution
+- **Curse Of Dimensionality** (too many features) its solution is to fill in the space of possible inputs with more and more training data *k-Nearest Neighbor classifier*
+
+### k-Nearest Neighbor classifier
+  - Depends critically on having enough training data to adequitly fill in the input feature space.
+  - "If there are three features, then the space is three-dimensional and the training data will fit inot some cube in that space"
+  - **!** The classifier measures the distance between points in the **training data** and that of a new, unknown **feature vector** and votes on what **label** to assign
+    - The dense the space is with training points, the more often the voting process will succeed.
+    - Loosely speaking, data augmentation fills in the this space.
+    - NN Could potentially learn the wrong thing
