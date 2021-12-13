@@ -1,5 +1,7 @@
 import ch5_1 as prepIris
 import ch5_2 as breastCancer
+import ch5_3 as prepMnist
+import ch5_4 as cifar10
 
 # labels = 0
 # features = 1
@@ -10,4 +12,6 @@ import ch5_2 as breastCancer
 # # all have similar scales we'll use the features as they are
 # prepIris.plot(data[features])
 
-breastCancer.run()
+# breastCancer.run()
+# prepMnist.run()
+cifar10.run()

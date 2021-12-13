@@ -36,6 +36,7 @@ $ pip3 install scikit-learn
 $ pip3 install pillow
 $ pip3 install h5py
 $ pip3 install keras
+$ pip3 install tensorflow
 ```
 `brew install python3; brew tap Homebrew/python; brew install scipy; brew install ipython; brew install jupyter; brew install numpy; brew install matplotlib ; pip3 install scikit-learn; pip3 install pillow; pip3 install h5py; pip3 install keras; ip3 install matplotlib`
 
