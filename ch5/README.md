@@ -51,3 +51,34 @@
     - The dense the space is with training points, the more often the voting process will succeed.
     - Loosely speaking, data augmentation fills in the this space.
     - NN Could potentially learn the wrong thing
+
+### Augmenting Training Data
+ - We need to getnerat new samples from it that are `plausible`
+  - images : straightforward, often `rotate` or `flip` or manipulate pixels or swap color bands
+    - top to bottom flip probably wont be realistic
+  - `feature vector augmentation` : more subtle, not always clear how to do it, or even plossible.
+     - we can shift the color between red or green or blue
+     - typically you try to augment continous values, crating a new feature vector that still represents the original class
+
+### PCA (principal component analysis)
+  - Old technique, used for over a **century**
+  - Used to combat curse of dimensionality, by reducing the number of features in a dataset.
+  - Example:
+    Imagine we have a dataset with only 2 features. We plot on scatter plot and shift the origin to 0,0 by substracting the mean value of each feature, this in effect changes the origin. It tells you the direction of the variance of the data. The directions are the **principal components**
+    **principal components** tell you how much of the variance of the dsta is explained by each of the directions.
+    **How PCA can ehlp fight the curse** find the principa component and then throw the less influential ones away.
+  - **why helpful** Once you know the principal components, you can use the PCA to create derived variables, which means you can rotate the data to align it with the principal components.
+  - If we take the original data, x transform it to the new represation, and then the invers tranform it.
+    - **modify** some of the principal components, we return a new set of samples that are not x but are based on x
+  - **normally distributted** means that it follow the bell curve so that most of the time the value will be near the middle.
+
+## Augmenting CIFAR-10
+  - color images stored as RGB data
+  - taken from the ground level, top down and bottom flips do not make sense. but left and right do.
+  - Translations are a more common technique and small rotations
+  - what to do with pixels that have no data after the shift or rotate?
+    - options:
+      - leave pixels black, or all 0 values. let model know there is no info there.
+      - replace the pixels with mean value of the image, which we hope model will also ignore
+      - Keras as tools for doing this via and **image generator object**
+  - we dont want to hand random croppings of images but insted crop down to 28*28

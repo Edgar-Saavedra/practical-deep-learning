@@ -10,7 +10,7 @@ path = "/Users/esaavedra/Work/personal/projects/practical-deep-learning/ch5/"
 
 def getCifarData():
   (features_trn, labels_trn), (features_tst, labels_tst) = cifar10.load_data()
-
+  # print('labels_trn', labels_trn)
   return {
     "train": {
       "features": features_trn,
@@ -27,7 +27,7 @@ def getCifarData():
 def randomize(dictionary):
   random = np.argsort(np.random.random(dictionary["train"]["labels"].shape[0]))
   features_trn = dictionary["train"]["features"][random]
-  labels_trn = dictionary["train"]["features"][random]
+  labels_trn = dictionary["train"]["labels"][random]
 
   random = np.argsort(np.random.random(dictionary["test"]["labels"].shape[0]))
   features_tst = dictionary["test"]["features"][random]

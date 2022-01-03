@@ -9,6 +9,7 @@ path = "/Users/esaavedra/Work/personal/projects/practical-deep-learning/ch5/"
 
 def getMnistData():
   (features_trn, labels_trn), (features_tst, labels_tst) = mnist.load_data()
+  # https://www.tensorflow.org/api_docs/python/tf/keras/datasets/mnist/load_data
 
   return {
     "train": {
@@ -72,6 +73,7 @@ def getUndoUnravelImages(vector, count, img_size):
   t = np.zeros((count, img_size, img_size))
   for i in range(count):
     t[i, :, :] = vector[i, :].reshape((img_size, img_size))
+  return t
 
 def saveMnisUndoUnraveledImages(dictionary):
   features_trn = dictionary["train"]["features"]

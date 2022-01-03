@@ -2,6 +2,8 @@ import ch5_1 as prepIris
 import ch5_2 as breastCancer
 import ch5_3 as prepMnist
 import ch5_4 as cifar10
+import ch5_7 as augmentCifar
+import concat_images as concatinateAugmented
 
 # labels = 0
 # features = 1
@@ -14,4 +16,6 @@ import ch5_4 as cifar10
 
 # breastCancer.run()
 # prepMnist.run()
-cifar10.run()
+# cifar10.run()
+# augmentCifar.main()
+concatinateAugmented.main()
