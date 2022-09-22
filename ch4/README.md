@@ -3,19 +3,21 @@
 - Dataset represents the data the model will encounter in the wild.
 - **Classes** : models that put things into descrete categories
 - **Label** : Identifier for each input in our **training set**. Example: a string or a number like 0/1. Models dont know what their inputs represent. Class labels are usually integers starting with 0. The ouput for our model.
-- **features** inpputs for our model. Usually numbers. Numbers we want to use as input. The trainig of model trys to learn relationship between the input features and the outbut label. 
-  - Model tryos to take feature **vector** with unknown labels and it trys to predict label
-  - If model makes repeated predictions, a posibility is the selected featurs are not sufficiently capturing the relationship.
-  - often need to be manipulated before they can go into model.
-  - Can be floating or interval numbers
+- **features** 
+  - inpputs for our model. Usually numbers. Numbers we want to use as input. The trainig of model trys to learn relationship between the input features and the outbut label. 
+  - The input to our model are features and the output is a label
+    - Model trys to take feature **vector** with unknown labels and it trys to predict label
+    - If model makes repeated predictions, a posibility is the selected features are not sufficiently capturing the relationship.
+    - Can be floating or interval numbers
+    - often need to be manipulated before they can go into model *
 - **numbers**
-  - Floating point : continuous infinite, between and intger and next
-  - interval value: dsicrete, leave gaps in between. Linear.
-  - ordinal: express an ordering
+  - Floating point : continuous infinite, between and intger and next (2.33)
+  - interval value: dsicrete, leave gaps in between. Linear. (9, 10, 11)
+  - ordinal: express an ordering 
   - categorical: numbers as codes. **note** machine learning expect at least ordinal. We can make categorical at leas ordinal. We pay a price using categorical, they must be mutually exclusive only 1 in each row.
 
 ## Feature selection
-- Feature vectors should contain only features that capture aspects of the data, that allow the model to generalize to new data.
+- Feature vectors should contain only features that capture aspects of the data, that allow the model to generalize to new data *
 - Should capture aspects of the data taht help the model seperate the classes.
 - we need enough feature to capture all the relevant parts.
 - too many features we fall victim to **cures of dimensionality**
@@ -27,32 +29,64 @@
 - In supervised learning we are the teacher.
 - **Interpolation** estimating within a certain known range.
 - **Extrapolation** Use the data we have to estimate outside the known range. Beyon what is known.
-- Models more accurate when we interolate.
-- **Linear Regression** The best fitting line to plot through data.
+- Models more accurate when we Interpolate.
+- **Linear Regression** The best fitting line to plot through data, aka prediction on a line
 - We need comprahensive training data. Akin to interpolation.
 - Dataset must cover full range of variation, within classes the model with see.
 - **classification** requires a comprehensive training data. The data must cover full range of variations withi the classes the model will see.
-- **Parent Distribution** The ideal data generator. Training, test and data we give to model all come from parent distribution.
+- **Parent Distribution** The ideal data generator. Training, test and data we give to model all come from parent distribution. Also known as the data generator that created the particular dataset.
 - **uniform parent distribution** When each value is equaly likely to happen.
-- **prior class probability** probability with which each class in in the dataset in the wild. We generally want our dataset to match this.
+- **prior class probability** probability with which each class in in the dataset appears in the wild. We generally want our dataset to match this.
   - Sometime hard to match this. We might start with an even number class instances and then change to a mix that matches the **prior class probability**
-- **confusers** hard negatives to allow more precise features of a class. Example: having a not a dog category.
-- **Capacity** & **complexity** **Capacity** : Number of parameters **complexity** How many parameters it can support relative to amount of training data. Usually good to have more training examples than model parameters. But Neural Networks  can work when there is less train data than parameters.
+- **confusers / hard negatives** hard negatives to allow a model to learn from more precise features of a class. We want to maker sure a dataset includes confusers.
+- **Capacity** & **complexity** **Capacity** : Number of parameters = **complexity** How many parameters it can support relative to amount of training data. Usually good to have more training examples than model parameters. But Neural Networks  can work when there is less train data than parameters.
   - When the task isnt so complex we can get away with fewer training examples. But need more training data when more complex
   - **Get as much as practical**
 
-## Data Preparation (Features)
+## Data Preparation (Features) SCALING
+- Important for: Reguralized Regression, K-nearest neighbors, Support Vector Machines, Lasso, Ridge regression
+- Some features will takes a wide range of values and others wont. Some models do not play well with this.
 - **Scaling** Is when we make every feature continuous.
-  - Having a balance data set with representation of the parent distribution is optimal
+  - We want the features to be be "scaled" so that they are more similar in range*
+  - Having a balanced data set with representation of the parent distribution is optimal
   - Scaling features allows you to makeranges in numbers more similar.
-  - **Mean Centering** Subtract the mean (average) value of the features over the entire dataset (sum each value divided by the number of values). We are shifiting data down toward 0.
+
+### MEAN CENTERING
+  - Important for: Reguralized Regression, K-nearest neighbors, Support Vector Machines, Lasso, Ridge regression
+  - helpuful with convergence for linear regression, Neural Networks
+  - no effect for Tree based models.
+  - Data preprocessing to  cetner the values of each feature, so that the mean is 0, the feature values are above or below 0
+  - https://www.youtube.com/watch?v=lfqjQeKwNmI
+  - **Mean Centering** Subtract the mean (average) value of the feature over the entire dataset (sum each value divided by the number of values). We are shifiting data down toward 0.
+  - Sum of each value divided by the number of vlues.
     - **For images** mean centering is often done by substracting a mean image from each input image *Look more into this*
+
+### Changing the standard deviation to 1
   - **Changing Standard deviation to 1** To spread the values around the mean. AKA **standardization/normalizing**
     - Whenever possible **standardize dataset** so that the features have 0 mean and standard deviation of 1.
     - ---> `(features - features.mean(axis=0)) / features.std(axis=0)` <---
+  - Calculating Standardization
+    - `x = (x-x.mean(axis=0)) / x.std(axis=0)`
+  - One must apply Standardization Or Normalization to most datasets. We want a mean of 0 and standard Deviation of 1.
+  - One must apply Standardization Or Normalization on the following:
+    - Nearest Centriod
+    - K-Nearest Neighbors
+    - Nive Bayes
+    - Decision Trees
+    - Random Forests
+    - Support Vector Machines
+
+### Missing Features
 - **Missing Features** sometimes we dont have all the features we need.
   - *Solution 1* Fill in missing values with values that are outside features range. Hope is model will learn to ignore that. Putting to 0.
   - *Solution 2* Replace with the mean value over the dataset. This allows us to standardize
+
+## Training/Validation/Test Data
+We do not want to use some of the entire data set for training. We use some of the data for other purposes and need to split to subsets : Training/Validation/Test
+
+*Training Data* used to train the model. Need to select feature vectors that represent the parent distribution.
+*Test Data* subset to evalutate how well the trained model is doing. Never use test when training.
+*validation Data* Not always needed, but helpul. Can help decide when to stop training and if we're using the right model. Example in neural networks we can we can test the performance of the NN with the validation data to figure out if we should continue training or stop. We don't train the model with validation and dont use to modify the parameters.
 
 ## Data Perparation (Training, Validation and Test Data)
 - Split our data to training, validation and test data

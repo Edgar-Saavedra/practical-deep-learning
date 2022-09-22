@@ -9,6 +9,8 @@
    - ranges [a:b] . one less than "b"
    - [a,b) b-nth is not included.
    - **in** keyword : x in b will check a list for a value.
+    - b = [2,3,4,5]
+    - 6 in b # false
    - **None** : null
    - a = [1,2,3,4]; b = a; b == [1,2,3,4]
    - [:] -- **get all elements**
