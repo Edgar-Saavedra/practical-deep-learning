@@ -32,13 +32,56 @@ $ brew install ipython
 $ brew install jupyter
 $ brew install numpy
 $ brew install matplotlib
-$ pip3 install scikit-learn
-$ pip3 install pillow
+$ pip install scikit-learn
+$ pip install pillow
 $ pip3 install h5py
 $ pip3 install keras
 $ pip3 install tensorflow
 ```
-`brew install python3; brew tap Homebrew/python; brew install scipy; brew install ipython; brew install jupyter; brew install numpy; brew install matplotlib ; pip3 install scikit-learn; pip3 install pillow; pip3 install h5py; pip3 install keras; pip3 install matplotlib; pip3 install tensorflow`
+
+```
+brew install pyenv;\
+pyenv install 3.9;\
+pip install virtualenv;\
+pyenv global 3.9;\
+pip install scipy;\
+pip install ipython;\
+pip install jupyter;\
+pip install numpy;\
+pip install matplotlib;\
+pip install scikit-learn;\
+pip install pillow;\
+pip install h5py;\
+pip install keras;\
+pip install matplotlib;\
+```
+
+Tensorflow
+```
+pip install tensorflow-macos;\
+pip install tensorflow-metal;
+```
+
+~/.zprofile
+```
+# Set PATH, MANPATH, etc., for Homebrew.
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="/opt/homebrew/bin:${PATH}"
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# put all virtual environments in a centralized location
+export WORKON_HOME=$HOME/.virtualenvs
+mkdir -p $WORKON_HOME
+
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+pyenv virtualenvwrapper_lazy
+```
+
+https://betterdatascience.com/install-tensorflow-2-7-on-macbook-pro-m1-pro/
+`pip install tensorflow-macos`
 
 - **pillow**: image processing
 - **h5py** : for working with HDF5 data files (scientific data)
