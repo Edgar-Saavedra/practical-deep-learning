@@ -143,3 +143,22 @@ pythone allows inner functions
     from time inmport ctime, localtime
     ctime()
   ```
+
+## Reference
+```
+One-dimensional slices
+The general syntax for a slice is array[start:stop:step]. Any or all of the values start, stop, and step may be left out (and if step is left out the colon in front of it may also be left out):
+
+A[5:]
+array([5, 6, 7, 8, 9])
+A[:5]
+array([0, 1, 2, 3, 4])
+A[::2]
+array([0, 2, 4, 6, 8])
+A[1::2]
+array([1, 3, 5, 7, 9])
+A[1:8:2]
+array([1, 3, 5, 7])
+
+```
+https://scipy-cookbook.readthedocs.io/items/Indexing.html

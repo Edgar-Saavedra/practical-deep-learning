@@ -58,6 +58,7 @@ pip install matplotlib;\
 
 Tensorflow
 ```
+# https://betterdatascience.com/install-tensorflow-2-7-on-macbook-pro-m1-pro/
 pip install tensorflow-macos;\
 pip install tensorflow-metal;
 ```
@@ -79,9 +80,6 @@ mkdir -p $WORKON_HOME
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 pyenv virtualenvwrapper_lazy
 ```
-
-https://betterdatascience.com/install-tensorflow-2-7-on-macbook-pro-m1-pro/
-`pip install tensorflow-macos`
 
 - **pillow**: image processing
 - **h5py** : for working with HDF5 data files (scientific data)

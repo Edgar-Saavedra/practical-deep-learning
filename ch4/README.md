@@ -7,13 +7,13 @@
   - inpputs for our model. Usually numbers. Numbers we want to use as input. The trainig of model trys to learn relationship between the input features and the outbut label. 
   - The input to our model are features and the output is a label
     - Model trys to take feature **vector** with unknown labels and it trys to predict label
-    - If model makes repeated predictions, a posibility is the selected features are not sufficiently capturing the relationship.
+    - If the model makes repeated incorrect predictions, a posibility is the selected features are not sufficiently capturing the relationship.
     - Can be floating or interval numbers
-    - often need to be manipulated before they can go into model *
+    - often need to be manipulated before they can go into model*
 - **numbers**
-  - Floating point : continuous infinite, between and intger and next (2.33)
-  - interval value: dsicrete, leave gaps in between. Linear. (9, 10, 11)
-  - ordinal: express an ordering 
+  - Floating point : continuous infinite, between and intger and next (ex: 2.33)
+  - interval value: dsicrete, leave gaps in between. Linear. (ex: 9, 10, 11)
+  - ordinal: express an ordering
   - categorical: numbers as codes. **note** machine learning expect at least ordinal. We can make categorical at leas ordinal. We pay a price using categorical, they must be mutually exclusive only 1 in each row.
 
 ## Feature selection
@@ -36,6 +36,7 @@
 - **classification** requires a comprehensive training data. The data must cover full range of variations withi the classes the model will see.
 - **Parent Distribution** The ideal data generator. Training, test and data we give to model all come from parent distribution. Also known as the data generator that created the particular dataset.
 - **uniform parent distribution** When each value is equaly likely to happen.
+- The **trainig**, **test**, and data fed to the model must be part of the same parent distribution.
 - **prior class probability** probability with which each class in in the dataset appears in the wild. We generally want our dataset to match this.
   - Sometime hard to match this. We might start with an even number class instances and then change to a mix that matches the **prior class probability**
 - **confusers / hard negatives** hard negatives to allow a model to learn from more precise features of a class. We want to maker sure a dataset includes confusers.
@@ -44,24 +45,24 @@
   - **Get as much as practical**
 
 ## Data Preparation (Features) SCALING
-- Important for: Reguralized Regression, K-nearest neighbors, Support Vector Machines, Lasso, Ridge regression
+- Important for: `Reguralized Regression, K-nearest neighbors, Support Vector Machines, Lasso, Ridge regression`
 - Some features will takes a wide range of values and others wont. Some models do not play well with this.
 - **Scaling** Is when we make every feature continuous.
   - We want the features to be be "scaled" so that they are more similar in range*
   - Having a balanced data set with representation of the parent distribution is optimal
-  - Scaling features allows you to makeranges in numbers more similar.
+  - Scaling features allows you to make ranges in numbers more similar.
 
 ### MEAN CENTERING
-  - Important for: Reguralized Regression, K-nearest neighbors, Support Vector Machines, Lasso, Ridge regression
+  - Important for: `Reguralized Regression, K-nearest neighbors, Support Vector Machines, Lasso, Ridge regression`
   - helpuful with convergence for linear regression, Neural Networks
   - no effect for Tree based models.
-  - Data preprocessing to  cetner the values of each feature, so that the mean is 0, the feature values are above or below 0
+  - Data preprocessing to cetner the values of each feature, so that the mean is 0, the feature values are above or below 0
   - https://www.youtube.com/watch?v=lfqjQeKwNmI
   - **Mean Centering** Subtract the mean (average) value of the feature over the entire dataset (sum each value divided by the number of values). We are shifiting data down toward 0.
-  - Sum of each value divided by the number of vlues.
+  - Sum of each value divided by the number of values.
     - **For images** mean centering is often done by substracting a mean image from each input image *Look more into this*
 
-### Changing the standard deviation to 1
+### Changing the standard deviation to 1 (pg 65)
   - **Changing Standard deviation to 1** To spread the values around the mean. AKA **standardization/normalizing**
     - Whenever possible **standardize dataset** so that the features have 0 mean and standard deviation of 1.
     - ---> `(features - features.mean(axis=0)) / features.std(axis=0)` <---
@@ -76,12 +77,12 @@
     - Random Forests
     - Support Vector Machines
 
-### Missing Features
+### Missing Features (pg 67)
 - **Missing Features** sometimes we dont have all the features we need.
   - *Solution 1* Fill in missing values with values that are outside features range. Hope is model will learn to ignore that. Putting to 0.
   - *Solution 2* Replace with the mean value over the dataset. This allows us to standardize
 
-## Training/Validation/Test Data
+## Training/Validation/Test Data (69)
 We do not want to use some of the entire data set for training. We use some of the data for other purposes and need to split to subsets : Training/Validation/Test
 
 *Training Data* used to train the model. Need to select feature vectors that represent the parent distribution.
@@ -94,19 +95,18 @@ We do not want to use some of the entire data set for training. We use some of t
 - **Test Data** used to evaluate how well the trained model is doing. Never use the test data when training the model.
 - **Validation Data** Not always needed but useful for deep learning. It can help to decide when to stop training and if we are using the correct model. Cant use validation data when reporting actual model performance.
 
-## Partitioning the Dataset
-- Typical split is 90% training, 5% validation, 5% testing.
-- You can go as low as 1% for Validation/Testing. For classical might want to make the test dataset larger.
-- Classical data sometimes dont learn as well. So need more test data. try 80% training, 10% validation & testing or 20% testing.
+## Partitioning the Dataset (69) see: 4-01-partitioning.py
+- Typical split is 90% **training**, 5% **validation**, 5% **testing**.
+- You can go as low as 1% for **Validation/Testing**. For classical might want to make the test dataset larger.
+- Classical data sometimes dont learn as well. So need more test data. try 80% **training**, 10% **validation** & **testing** or 20% **testing**.
   - Larger test sets might be appropriate for multiclass model that have classes with low probabilities.
 
-## Steps to produce training, validation and test splits
+## Steps to produce training, validation and test splits see: ch_4_02_partitioning_byclass.py, ch_4_03_random_sampling.py, (70)
 - **Randomize** the order of the full datase, so classes are evenly mixed
 - **Calculate number of samples** in training (ntrn) and valdation (nval) by multiplying the number of samples in the full dataset by the desired fraction. Remaining will fall into the test set
 - Assign the first ntrn samples to the training set
 - Assign the next nval samples to the validation set
 - Assin the remining samples to test set
-NOTE: See `4-1.py, 4-2.py`
 
 ## K-Fold Cross Validation
 - Technique to ensure each sample in the dataset is used at some point for training and testing.
