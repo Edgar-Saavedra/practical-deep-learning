@@ -108,7 +108,9 @@ We do not want to use some of the entire data set for training. We use some of t
 - Assign the next nval samples to the validation set
 - Assin the remining samples to test set
 
-## K-Fold Cross Validation
+## K-Fold Cross Validation (74)
+- An issue arises when we use a singel training/validation/test split: we might be holding too much data back for testing
+- Used for mall datat sets
 - Technique to ensure each sample in the dataset is used at some point for training and testing.
 - For small dataset in traditional learning models.
 - Helpful to decide between models
@@ -126,6 +128,7 @@ We do not want to use some of the entire data set for training. We use some of t
   11. We can start over gain and train teh selected modle type using all of the dataset for training.
 
 ## Searching for problems in data
+- use python script to summarize the dat
 - When summarizing values statistically we look at the **mean** (largest value) and **standard deviation** (smallest value)
 - Sort the values from smallest to largest
 - **standard error (ofthe mean)** The standard deviation divided by the square root of the number of the values of the dataset
@@ -134,6 +137,12 @@ We do not want to use some of the entire data set for training. We use some of t
   - **we could resonably replace the missing values** by the mean (or median)
 
 - Look at the data. Goal is to represent parent distribution.
+
+- **the standard error** is a measure of the difference between our **mean value** x and the **mean value** of the parent distribution. 
+if we have more measurements we'll have a better idea of the parent distribution that is generating the data
+- The mean and media are relatively clost to each other. 
+
+See `ch_4_04_caculating_statitics.py`
 
 ## Summary
 - Components of dataset : Classes, Labels, Features, Feature Vectors
