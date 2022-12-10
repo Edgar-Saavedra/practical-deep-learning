@@ -12,6 +12,11 @@
 2. Replace class names with integer labels
 3. 5-1.py
 
+See page 86
+1. Analyze the data, understand the structure
+2. Standardize - features a re different scales 
+3. Sort - hold some back and categorize.
+
 ## MNIST Data set
 - use keras, but (cononical source)[yann.lecun.com/exdb/mnist]
 - create additional dataset from this initial Keras set
