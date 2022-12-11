@@ -1,11 +1,13 @@
 ## Objective
 - Acquire raw data
 - peprocess data (often most labor intensive)
+- Create datasets used in rest of chapters
 
 ## resources
 - [iris repository](https://archive.ics.uci.edu/ml/index.php)
 - [iris download](https://archive.ics.uci.edu/ml/datasets/iris), [iris.data](https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data)
 - [Wisconsin Diagnostic Breast Cancer dataset](https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data)
+- [MNIST](yann.lecun.com/exdb/mnist)
 
 # Steps
 1. Randomize the data
@@ -18,8 +20,16 @@ See page 86
 3. Sort - hold some back and categorize.
 
 ## MNIST Data set
+see : ch_5_03_randomize_mnist.py (pg 88)
 - use keras, but (cononical source)[yann.lecun.com/exdb/mnist]
 - create additional dataset from this initial Keras set
+- Keres will return the datset as 3D Numpy Arrys.
+  - First dimension is the number of images - 60,000 training
+  - 10,000 for test.
+  - the second and third dimensions are the pixels of images
+  - the images are 28x28 in size. 8 bit integers [0, 255]
+
+We will create additional datasets from the initial one.
   1. Unravel the images to form form feature vectors
   2. Permute the order of the images in the dataset. The reordering of the pixels will be deterministic and applied consitently across all images
   3. Create an unraveled feature vector version of the permuted images
