@@ -8,6 +8,7 @@
 - [iris download](https://archive.ics.uci.edu/ml/datasets/iris), [iris.data](https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data)
 - [Wisconsin Diagnostic Breast Cancer dataset](https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data)
 - [MNIST](yann.lecun.com/exdb/mnist)
+- [CIFAR](https://www.cs.toronto.edu/%7Ekriz/cifar.html)
 
 # Steps
 1. Randomize the data
@@ -35,7 +36,7 @@ We will create additional datasets from the initial one.
   3. Create an unraveled feature vector version of the permuted images
 
 ## CIFAR-10 dataset
- - in Keras
+ - in Keras (pg 91)
  - [source page](https://www.cs.toronto.edu/%7Ekriz/cifar.html)
  - consists of 60,000 32X32 rgb images from
   - 10 classes
@@ -54,12 +55,15 @@ We will create additional datasets from the initial one.
   - TEst set contains 10,000
 
 ## DATA Augmentation
-- We need Models to **interpolate**
-- **Data Augmentation** should be used whereever its feasible and small dataset
+- **Data augmentation** uses the data in teh existing dataset to generate new possible samples to add to the set. (92)
+- We need Models to **interpolate** 
+- **Data Augmentation** should be used wherever its feasible and small dataset
   - Take data we already have and modify it to create a new sample that could have plausibly come from the same parent distribution
 - **Curse Of Dimensionality** (too many features) its solution is to fill in the space of possible inputs with more and more training data *k-Nearest Neighbor classifier*
 
 ### k-Nearest Neighbor classifier
+  - It depends  on having enough training data to adequately fill in the input feature space. If there are three features the the space is 3 dimensional. The classifier measures the distance between points in the training data and that of a new, unknown feature vectore and votes on what label to assign.
+  - The denser the space is with training points the more often the voting process will succeed.
   - Depends critically on having enough training data to adequitly fill in the input feature space.
   - "If there are three features, then the space is three-dimensional and the training data will fit inot some cube in that space"
   - **!** The classifier measures the distance between points in the **training data** and that of a new, unknown **feature vector** and votes on what **label** to assign
@@ -67,15 +71,32 @@ We will create additional datasets from the initial one.
     - Loosely speaking, data augmentation fills in the this space.
     - NN Could potentially learn the wrong thing
 
-### Augmenting Training Data
- - We need to getnerat new samples from it that are `plausible`
+### Regurlization (94)
+- When working with modern deep learning models we'll see that data augmentation has additional benefits.
+- During training a neural network becomes conditioned to learn features of tehr training data. If the features are actually useful everything is ok. Sometimes the NN learns the wrong thing.
+- Regularization helps the network learn important features of the training data.
+- Data augmentation conditions the learning process to not pay attention to quirks of the samples but to instead focus on more general features.
+- Data augmentation lessens likelihood of overfitting
+- Be sure that augmented smple belongs to the same set.
+- **The correct way to augment data is after the training, validation and test splits have been made.**
+
+### Augmenting Training Data (94)
+ - We need to generate new samples from it that are `plausible`
   - images : straightforward, often `rotate` or `flip` or manipulate pixels or swap color bands
-    - top to bottom flip probably wont be realistic
+    - top to bottom flip probably wont be realistic. D realistic modifications.
   - `feature vector augmentation` : more subtle, not always clear how to do it, or even plossible.
      - we can shift the color between red or green or blue
      - typically you try to augment continous values, crating a new feature vector that still represents the original class
 
-### PCA (principal component analysis)
+
+### Augmenting Iris Dataset (SEE: ch_5_05_iris_data_set_PCA_plot.py) (PG 97)
+- The iris dataset has 150 samples form 3 classes each with 4 features.
+- We augment using PCA : principal comonent analysis, old method to combate curse of demantionality (pg 95)
+- PCA tells you the direction sof the variance of the data. These directions are the **principal components**
+- Principal components tell you how much of the variance of the data is explained by each of these directions.
+- PCA is used to reduce the number of features while still, hopefully, representing the dataset well.
+
+### PCA (principal component analysis) (PG 97)
   - Old technique, used for over a **century**
   - Used to combat curse of dimensionality, by reducing the number of features in a dataset.
   - Example:
