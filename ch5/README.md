@@ -97,6 +97,15 @@ We will create additional datasets from the initial one.
 - PCA is used to reduce the number of features while still, hopefully, representing the dataset well.
 
 ### PCA (principal component analysis) (PG 97)
+- TLDR: Components in PCA are your primary features, we plot them in 2d space, so we normally are dealing with 2 features. WE shift the plot to the origin (0,0) by substracting the mean value of each feature. However we need to keep all the components for augmentation. So we list components in order of importantce. And we use this to augment. Knowing the principal components you can create derived variables. So you rotate the data to align it with the principal components. (use transform method). If we take original data, transform it modify some principal components, then inverse transform it we get data based on x.
+
+1. Components are ordered in importance in pca.
+2. We want to keep the most important components.
+3. We dont want to transform too much.
+4. We want to keep components that represent some 90% - 95% of the variance in the data.
+5. Remaining components are modified adding normally distributed noise.
+6. Normally distributted means it follows a bell curve, where most of the value is near the middle.
+
   - Old technique, used for over a **century**
   - Used to combat curse of dimensionality, by reducing the number of features in a dataset.
   - Example:
