@@ -99,6 +99,7 @@ We will create additional datasets from the initial one.
 ### PCA (principal component analysis) (PG 97)
 - TLDR: Components in PCA are your primary features, we plot them in 2d space, so we normally are dealing with 2 features. WE shift the plot to the origin (0,0) by substracting the mean value of each feature. However we need to keep all the components for augmentation. So we list components in order of importantce. And we use this to augment. Knowing the principal components you can create derived variables. So you rotate the data to align it with the principal components. (use transform method). If we take original data, transform it modify some principal components, then inverse transform it we get data based on x.
 
+`See ch_5_06_augementing_iris_with_pca.py`
 1. Components are ordered in importance in pca.
 2. We want to keep the most important components.
 3. We dont want to transform too much.
@@ -117,7 +118,24 @@ We will create additional datasets from the initial one.
     - **modify** some of the principal components, we return a new set of samples that are not x but are based on x
   - **normally distributted** means that it follow the bell curve so that most of the time the value will be near the middle.
 
+**important PCA notes**
+This approach is appropriate for continuous features only. You should be careful to modify only the weakest of the principal components, and only a small amount.
+
+**TRY** applying the same technique to augment the breast cancer dataset, which also consists of continous features.
+
 ## Augmenting CIFAR-10
+
+For CIFAR-10 there are color images stored as RGB data. Translate - shiftting image in the x or y direction or both, small rotation are another technique.
+For pixels that have no data after the shift or rotation. Simply leave the pixels black (all values 0), OR replace the pixels with the mean value of the image (which also provides no info)
+We want the machine to disregard these.
+
+The most popular solution is to crop the image.
+
+Pulling  a random patch from the image of 28x28 pixes is the equivalent of shiffting
+
+Rotating the image first requires interpolation of the pixels.
+We take each 32x32 test input and crop it to 28*28 by droppin the outer 6 pixels. The center crop still represents the actual test image and not some augmented version
+
   - color images stored as RGB data
   - taken from the ground level, top down and bottom flips do not make sense. but left and right do.
   - Translations are a more common technique and small rotations
