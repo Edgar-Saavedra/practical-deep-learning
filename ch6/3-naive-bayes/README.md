@@ -39,3 +39,5 @@ We then multiply the probabilities together. And multiply that by the prior prob
 Laplace smoothing - addresses for uncommon instances.
 
 MultinomialNB in sklearn
+
+https://www.youtube.com/watch?v=O2L2Uv9pdDA
