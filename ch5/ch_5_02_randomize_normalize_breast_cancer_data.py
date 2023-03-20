@@ -2,6 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Read text in raw data
+# https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)
+# https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data
+# Number of Instances: 569
+# Number of Attributes: 32
 with open("wdbc.data") as f:
     lines = [i[:-1] for i in f.readlines() if i != ""]
 
@@ -20,11 +24,11 @@ y = y[i]
 #     - `x = (x-x.mean(axis=0)) / x.std(axis=0)`
 #   - One must apply Standardization Or Normalization to most datasets. We want a mean of 0 and standard Deviation of 1.
 #   - One must apply Standardization Or Normalization on the following:
-z = (y - y.mean(axis=0) / y.std(axis=0))
+z = (y - y.mean(axis=0)) / y.std(axis=0)
 
-np.save("bc_features.npy", y)
-np.save("bc_features_standard.npy", z)
+np.save("breast_cancer_features.npy", y)
+np.save("breast_cancer_features_standard_normalized.npy", z)
 
-np.save("bc_labels.npy", x)
+np.save("breast_cancer_labels.npy", x)
 plt.boxplot(z)
 plt.show()

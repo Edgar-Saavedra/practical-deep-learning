@@ -19,3 +19,10 @@ Using three datasets
   4. Decision Tree
   5. Random Forest
   6. SVM
+
+
+## Breast Cancer Dataset
+- We will use the normalized dataset
+- Normalized means that per feature, each value has the mean for that featur substracted and then is divided by the standard deviation.
+- Normalization mpas all the features into the smae overall range so that the value of one feature is similar to the value of another.
+
