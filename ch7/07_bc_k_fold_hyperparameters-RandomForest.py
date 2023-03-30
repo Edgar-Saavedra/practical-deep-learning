@@ -79,9 +79,9 @@ def split(dataset_samples, dataset_labels, current_k_fold_number, total_number_f
 # pretty print function to show the per split scores
 # it also shows the average score acorss all the splits
 # The score is the overall accuracy of the model, 1 is perfection 0 is failure
-def prettyPrint(vector, k_fold, per_split_score):
+def prettyPrint(vector, k_fold, label):
   m = vector.shape[1]
-  print("%-19s: %0.4f +/- %0.4f | " % (per_split_score, vector[k_fold].mean(), vector[k_fold].std()/np.sqrt(m)), end='')
+  print("%-19s: %0.4f +/- %0.4f | " % (label, vector[k_fold].mean(), vector[k_fold].std()/np.sqrt(m)), end='')
   for i in range(m):
       print("%0.4f " % vector[k_fold,i], end='')
   print()
@@ -105,22 +105,22 @@ def main():
 
   for k in range(m):
     x_train, y_train, x_test, y_test = split(x,y,k,m)
-    z[0,k] = run(x_train, y_train, x_test, y_test, NearestCentroid())
-    z[1,k] = run(x_train, y_train, x_test, y_test, KNeighborsClassifier(n_neighbors=3))
-    z[2,k] = run(x_train, y_train, x_test, y_test, KNeighborsClassifier(n_neighbors=7))
-    z[3,k] = run(x_train, y_train, x_test, y_test, GaussianNB())
-    z[4,k] = run(x_train, y_train, x_test, y_test, DecisionTreeClassifier())
-    z[5,k] = run(x_train, y_train, x_test, y_test, RandomForestClassifier(n_estimators=5))
-    z[6,k] = run(x_train, y_train, x_test, y_test, RandomForestClassifier(n_estimators=50))
-    z[7,k] = run(x_train, y_train, x_test, y_test, SVC(kernel="linear", C=1.0))
+    z[0,k] = run(x_train, y_train, x_test, y_test, RandomForestClassifier(n_estimators=5))
+    z[1,k] = run(x_train, y_train, x_test, y_test, RandomForestClassifier(n_estimators=20))
+    z[2,k] = run(x_train, y_train, x_test, y_test, RandomForestClassifier(n_estimators=50))
+    z[3,k] = run(x_train, y_train, x_test, y_test, RandomForestClassifier(n_estimators=100))
+    z[4,k] = run(x_train, y_train, x_test, y_test, RandomForestClassifier(n_estimators=200))
+    z[5,k] = run(x_train, y_train, x_test, y_test, RandomForestClassifier(n_estimators=500))
+    z[6,k] = run(x_train, y_train, x_test, y_test, RandomForestClassifier(n_estimators=750))
+    z[7,k] = run(x_train, y_train, x_test, y_test, RandomForestClassifier(n_estimators=1000))
 
-  prettyPrint(z, 0, "Nearest")
-  prettyPrint(z, 1, "3-NN")
-  prettyPrint(z, 2, "7-NN")
-  prettyPrint(z, 3, "Naive Bayes")
-  prettyPrint(z, 4, "Decision Tree")
-  prettyPrint(z, 5, "Random Forest (5)")
-  prettyPrint(z, 6, "Random Forest (50)")
-  prettyPrint(z, 7, "SVM (linear)")
+  prettyPrint(z, 0, "RandomForestClassifier(n_estimators=5)")
+  prettyPrint(z, 1, "RandomForestClassifier(n_estimators=20)")
+  prettyPrint(z, 2, "RandomForestClassifier(n_estimators=50)")
+  prettyPrint(z, 3, "RandomForestClassifier(n_estimators=100)")
+  prettyPrint(z, 4, "RandomForestClassifier(n_estimators=200)")
+  prettyPrint(z, 5, "RandomForestClassifier(n_estimators=500)")
+  prettyPrint(z, 6, "RandomForestClassifier(n_estimators=750)")
+  prettyPrint(z, 7, "RandomForestClassifier(n_estimators=1000)")
 
 main()
