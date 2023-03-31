@@ -1,7 +1,7 @@
 import numpy as np
 import keras
 from keras.datasets import mnist
-
+# 86
 # x - labels
 # y - vectors
 
@@ -20,11 +20,11 @@ idx = np.argsort(np.random.random(ytst.shape[0]))
 xtst = xtst[idx]
 ytst = ytst[idx]
 
-np.save("mnist_train_images.py", xtrn)
-np.save("mnist_train_labels.npy", xtrn)
+np.save("mnist_train_images.npy", xtrn)
+np.save("mnist_train_labels.npy", ytrn)
 
-np.save("mnist_test_images.py", xtst)
-np.save("mnist_test_labels.py", ytst)
+np.save("mnist_test_images.npy", xtst)
+np.save("mnist_test_labels.npy", ytst)
 
 # unravel - to form feature vectors so that we can use this dataset with traditional models
 # We unravel the training and test images and turn them into vectors of 784 elements
