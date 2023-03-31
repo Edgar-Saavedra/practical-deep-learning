@@ -107,3 +107,93 @@ def main():
   train(x_ptrain, y_train, x_ptest, y_test)
 
 main()
+
+# Models trained on raw[0, 255] images
+# Nearest Centroid : score = 0.8203 (time, train=   0.087, test=   0.051)
+# k-NN classifier (k=3) : score = 0.9705 (time, train=   0.012, test=   3.256)
+# k-NN classifier (k=7) : score = 0.9694 (time, train=   0.012, test=   3.144)
+# Naive Bayes (Gaussian)score = 0.5558 (time, train=   0.258, test=   0.175)
+# Decision Tree : score = 0.8785 (time, train=  10.652, test=   0.007)
+# Random Forest (trees = 5) : score = 0.9244 (time, train=   1.066, test=   0.015)
+# Random Forest (trees = 50) : score = 0.9691 (time, train=  10.149, test=   0.089)
+# Random Forest (trees = 500) : score = 0.9719 (time, train= 101.051, test=   0.829)
+# Random Forest (trees = 1000) : score = 0.9714 (time, train= 205.697, test=   1.666)
+# /Users/edgar/.pyenv/versions/3.9.15/lib/python3.9/site-packages/sklearn/svm/_base.py:1225: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+#   warnings.warn(
+# LinearSVM (C=0.01) : score = 0.8759 (time, train= 105.918, test=   0.012)
+# /Users/edgar/.pyenv/versions/3.9.15/lib/python3.9/site-packages/sklearn/svm/_base.py:1225: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+#   warnings.warn(
+# LinearSVM (C=0.1) : score = 0.8472 (time, train= 105.098, test=   0.007)
+# /Users/edgar/.pyenv/versions/3.9.15/lib/python3.9/site-packages/sklearn/svm/_base.py:1225: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+#   warnings.warn(
+# LinearSVM (C=1.0) : score = 0.8835 (time, train= 101.844, test=   0.009)
+# /Users/edgar/.pyenv/versions/3.9.15/lib/python3.9/site-packages/sklearn/svm/_base.py:1225: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+#   warnings.warn(
+# LinearSVM (C=10.0) : score = 0.8685 (time, train= 101.858, test=   0.015)
+
+
+# Models trained on raw [0, 1) images:
+# Nearest Centroid : score = 0.8203 (time, train=   0.089, test=   0.013)
+# k-NN classifier (k=3) : score = 0.9704 (time, train=   0.014, test=   3.185)
+# k-NN classifier (k=7) : score = 0.9690 (time, train=   0.013, test=   3.060)
+# Naive Bayes (Gaussian)score = 0.5551 (time, train=   0.291, test=   0.222)
+# Decision Tree : score = 0.8780 (time, train=  10.626, test=   0.007)
+# Random Forest (trees = 5) : score = 0.9240 (time, train=   1.035, test=   0.015)
+# Random Forest (trees = 50) : score = 0.9674 (time, train=  10.167, test=   0.086)
+# Random Forest (trees = 500) : score = 0.9710 (time, train= 102.249, test=   0.803)
+# Random Forest (trees = 1000) : score = 0.9707 (time, train= 208.234, test=   1.640)
+# LinearSVM (C=0.01) : score = 0.9172 (time, train=   3.768, test=   0.008)
+# LinearSVM (C=0.1) : score = 0.9180 (time, train=  19.652, test=   0.017)
+# /Users/edgar/.pyenv/versions/3.9.15/lib/python3.9/site-packages/sklearn/svm/_base.py:1225: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+#   warnings.warn(
+# LinearSVM (C=1.0) : score = 0.9185 (time, train=  57.883, test=   0.009)
+# /Users/edgar/.pyenv/versions/3.9.15/lib/python3.9/site-packages/sklearn/svm/_base.py:1225: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+#   warnings.warn(
+# LinearSVM (C=10.0) : score = 0.9066 (time, train=  97.457, test=   0.008)
+
+
+
+# Models trained on normalized images:
+# Nearest Centroid : score = 0.8092 (time, train=   0.087, test=   0.020)
+# k-NN classifier (k=3) : score = 0.9452 (time, train=   0.015, test=   3.405)
+# k-NN classifier (k=7) : score = 0.9433 (time, train=   0.012, test=   3.504)
+# Naive Bayes (Gaussian)score = 0.5239 (time, train=   0.229, test=   0.180)
+# Decision Tree : score = 0.8775 (time, train=  10.861, test=   0.008)
+# Random Forest (trees = 5) : score = 0.9196 (time, train=   1.067, test=   0.015)
+# Random Forest (trees = 50) : score = 0.9668 (time, train=  10.583, test=   0.091)
+# Random Forest (trees = 500) : score = 0.9711 (time, train= 102.386, test=   0.831)
+# Random Forest (trees = 1000) : score = 0.9718 (time, train= 206.995, test=   1.626)
+# /Users/edgar/.pyenv/versions/3.9.15/lib/python3.9/site-packages/sklearn/svm/_base.py:1225: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+#   warnings.warn(
+# LinearSVM (C=0.01) : score = 0.9158 (time, train= 156.265, test=   0.013)
+# /Users/edgar/.pyenv/versions/3.9.15/lib/python3.9/site-packages/sklearn/svm/_base.py:1225: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+#   warnings.warn(
+# LinearSVM (C=0.1) : score = 0.9159 (time, train= 223.549, test=   0.009)
+# /Users/edgar/.pyenv/versions/3.9.15/lib/python3.9/site-packages/sklearn/svm/_base.py:1225: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+#   warnings.warn(
+# LinearSVM (C=1.0) : score = 0.9109 (time, train= 357.196, test=   0.007)
+# /Users/edgar/.pyenv/versions/3.9.15/lib/python3.9/site-packages/sklearn/svm/_base.py:1225: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+#   warnings.warn(
+# LinearSVM (C=10.0) : score = 0.8864 (time, train= 379.507, test=   0.008)
+
+
+# Models trained on first 15 PCA components of normalized images:
+# Nearest Centroid : score = 0.7520 (time, train=   0.007, test=   0.004)
+# k-NN classifier (k=3) : score = 0.9353 (time, train=   0.040, test=   1.169)
+# k-NN classifier (k=7) : score = 0.9369 (time, train=   0.024, test=   1.445)
+# Naive Bayes (Gaussian)score = 0.8013 (time, train=   0.011, test=   0.005)
+# Decision Tree : score = 0.8416 (time, train=   1.287, test=   0.002)
+# Random Forest (trees = 5) : score = 0.8850 (time, train=   0.728, test=   0.008)
+# Random Forest (trees = 50) : score = 0.9215 (time, train=   7.219, test=   0.073)
+# Random Forest (trees = 500) : score = 0.9264 (time, train=  72.600, test=   0.730)
+# Random Forest (trees = 1000) : score = 0.9251 (time, train= 145.762, test=   1.433)
+# LinearSVM (C=0.01) : score = 0.8289 (time, train=   6.253, test=   0.012)
+# /Users/edgar/.pyenv/versions/3.9.15/lib/python3.9/site-packages/sklearn/svm/_base.py:1225: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+#   warnings.warn(
+# LinearSVM (C=0.1) : score = 0.8302 (time, train=  13.232, test=   0.022)
+# /Users/edgar/.pyenv/versions/3.9.15/lib/python3.9/site-packages/sklearn/svm/_base.py:1225: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+#   warnings.warn(
+# LinearSVM (C=1.0) : score = 0.8265 (time, train=  23.007, test=   0.010)
+# /Users/edgar/.pyenv/versions/3.9.15/lib/python3.9/site-packages/sklearn/svm/_base.py:1225: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+#   warnings.warn(
+# LinearSVM (C=10.0) : score = 0.7362 (time, train=  31.979, test=   0.020)
