@@ -24,7 +24,7 @@ See page 86
 see : ch_5_03_randomize_mnist.py (pg 88)
 - use keras, but (cononical source)[yann.lecun.com/exdb/mnist]
 - create additional dataset from this initial Keras set
-- Keres will return the datset as 3D Numpy Arrys.
+- Keras will return the datset as 3D Numpy Arrys.
   - First dimension is the number of images - 60,000 training
   - 10,000 for test.
   - the second and third dimensions are the pixels of images

@@ -33,6 +33,7 @@ def run(x_train, y_train, x_test, y_test, clf):
   execution_time_test = time.time() - start
   print("score = %0.4f (time, train=%8.3f, test=%8.3f)" % (score, execution_time_train, execution_time_test))
 
+# wraps calls to run() for the different model types.
 def train(x_train, y_train, x_test, y_test):
   print("Nearest Centroid : ", end='')
   run(x_train, y_train, x_test, y_test, NearestCentroid())
@@ -61,6 +62,11 @@ def train(x_train, y_train, x_test, y_test):
   print("Random Forest (trees = 1000) : ", end='')
   run(x_train, y_train, x_test, y_test, RandomForestClassifier(n_estimators=1000))
 
+  # LinearSVC implements only a linear kernel
+  # 1. We switch from SVC to Linear SVC to avoid worse Big O notation
+  # 2. Support vector machines are intended for Binary Classes.
+  # 2. SVC uses one-vs-one so the multiple classifiers
+  # 2. LInearSVC uses one-vs-rest which reduces amount of classifiers
   print("LinearSVM (C=0.01) : ", end='')
   run(x_train, y_train, x_test, y_test, LinearSVC(C=0.01))
 
@@ -74,20 +80,33 @@ def train(x_train, y_train, x_test, y_test):
   run(x_train, y_train, x_test, y_test, LinearSVC(C=10.0))
 
 def main():
+  # load the data
   x_train = np.load("../ch5/mnist_train_vectors.npy").astype("float64")
   y_train = np.load("../ch5/mnist_train_labels.npy")
   x_test = np.load("../ch5/mnist_test_vectors.npy").astype("float64")
   y_test = np.load("../ch5/mnist_test_labels.npy")
 
+  # train the models using raw byte data
   print("Models trained on raw[0, 255] images")
   train(x_train, y_train, x_test, y_test)
 
+  # train models using scaled
   print("Models trained on raw [0, 1) images:")
   # TODO: why 256?
   train(x_train/255.0, y_train, x_test/256.0, y_test)
 
-  m = x_train.mean(axis=0)
+  # normalizethe data.
   # TODO: WHAT DOES axis control?
+  # Add a small value to the stadard deviations to make up for pixels that have a standard deviations of zero
+  # Generally we have more training data than testing data
+  # Using the means and standard deviation from the training data makes sense - they are a better representation of the true means and SD
+  # however at times there may be differences between training and testing data - at which time it may make more sens to use the testing means and SD
+  # since the training and testing data were created together there is no dfference 
+
+  #  axis None or int or tuple of ints, optional
+  # Axis or axes along which the means are computed. The default is to compute the mean of the flattened array.
+  # If this is a tuple of ints, a mean is performed over multiple axes, instead of a single axis or all the axes as before.
+  m = x_train.mean(axis=0)
   s = x_train.std(axis=0) + 1e-8
 
   # normalized
@@ -98,11 +117,21 @@ def main():
   train(x_ntrain, y_train, x_ntest, y_test)
 
   # TODO: why 15?
+  # Apply PCS to the dataset.
+  # We are keeping the first 15 components , these account for just 33% of the variance in the data and reduce the feature vecotre from 784 features.
+  # to 15 features and trin using these feaures.
+  # 1. Components are ordered in importance in pca.
+  # 2. We want to keep the most important components.
+  # 3. We dont want to transform too much.
+  # 4. We want to keep components that represent some 90% - 95% of the variance in the data.
+  # 5. Remaining components are modified adding normally distributed noise.
+  # 6. Normally distributted means it follows a bell curve, where most of the value is near the middle.
+
   pca = decomposition.PCA(n_components=15)
   pca.fit(x_ntrain)
   x_ptrain = pca.transform(x_ntrain)
   x_ptest = pca.transform(x_ntest)
-
+  
   print("Models trained on first 15 PCA components of normalized images:")
   train(x_ptrain, y_train, x_ptest, y_test)
 

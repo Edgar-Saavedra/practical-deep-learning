@@ -1,5 +1,8 @@
+# This file shows how numpy arrays can be crated and manipulated.
 # example using the Numpy.array() method
 import numpy as np
+
+# create basic numpy array
 a = np.array([1,2,3,4])
 print(f"array {a}", f"array size : {a.size}", f"array shape : {a.shape}", f"array dtype :{a.dtype}")
 

@@ -1,4 +1,5 @@
-# SCALING DATA
+# SCALING DATA 72
+# This file shows how one can create Validation, Training datas from 2 classes and create splits. Using random data.
 import numpy as np
 from sklearn.datasets import make_classification
 # Random Sampling

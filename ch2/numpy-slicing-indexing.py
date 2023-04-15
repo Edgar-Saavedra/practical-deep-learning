@@ -59,9 +59,9 @@ cols = np.array([2,4,0])
 # What we can do is to add an axis to one of the arrays,
 
 rows[:,np.newaxis]
-array([[4],
-       [3],
-       [1]])
+# array([[4],
+#        [3],
+#        [1]])
 # Or we could equivalently use rows[:,None]
 
 ix = np.broadcast(rows[:,None], cols)

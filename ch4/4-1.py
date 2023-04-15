@@ -1,4 +1,6 @@
 # SCALING DATA
+# This file shows how one can create Validation, Training datas from 2 classes and create splits.
+# 70
 
 # If there are 9,000 samples from class 0
 # 1000 samples for class 1. 
@@ -14,6 +16,8 @@
 
 # 90/5/5 split
 import numpy as np
+
+# make_classification is a method to create a split of classes based on number of samples.
 from sklearn.datasets import make_classification
 
 a,b = make_classification(n_samples=10000, weights=(0.9,0.1))
