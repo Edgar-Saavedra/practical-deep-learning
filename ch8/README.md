@@ -78,3 +78,58 @@ Both of these functions have roughly the same S shape.
 More Recently the sigmoid and hyperbolic tanget have been replaced with the rectified linear unit (ReLU)
 
 ReLu - is not a straight line. Used in backpropagation training of NNs
+
+### ReLu
+Rectified Linear Unit, a non linear activation funciton. It is called rectified because it removes the negative values and replaces them with 0. It is computationally simple, faster to calculate than either sigmoid or hyperbolic tangent.
+
+### Architecture of a NN 
+Standard Networks Are built in layers.
+
+FeedForward Network 
+  - has an input layer (feature vector)
+  - one or more layers
+    - hidden layers are mde of nodes.
+  - an output layer (prediction)
+  - Nodes
+    - accept an input the output of the nodes of layer `i-1` and pass their output to the inputs of node `i+1`
+    - Connections between layers are usually fully connected
+    - The number of nodes in each hidden layer defin the architecture of the network.
+    - i has been proven that a single hidden layer with enough nodes can learn any function mapping.
+    - The model acts as a complex function mapping inputs to output labels and probabilities.
+  - As the number of nodes (and layers) grows, so too does the number of parameters to learn (weights and biases) and therefore also the amount of training data - Cures of dimensionality
+
+### Selecting The Right Achitecture
+- if your input has a definite spatial relationship (image), you might want to use a CNN (convolutional neural network)
+- use no more than 3 hidden layers. 1 sufficiently large hidden layer is all that is needed. If it learns with 1 then maybe see about adding a second hidden layer.
+- number of nodes in the first hidden layer should match or exceed the number of input vector features
+- Except for first hidden layer, the number of nodes per hidden layer should be the same or some value between the number of nodes in the previous layer and following layer.
+
+1. NNs best apply to situations where your input does not have spatial relationship - not an image.
+2. Input decision is small, not a lot of data - not good for CNNs.
+
+## Output layers
+If the NN is modeling a continous value - regression, then the output is a node that doesn't use an activation function.
+
+If NN is for `single classification`, we wnat them to output a decision value. If we have 2 classes (class 0, class 1), we make the activation function of the final node a sigmoid. It will output a value in that range. If the activation function value is less than 0.5 call that class 0.
+
+If NN is for `multiple classification`, instead of single node output, we'll have `N` output nodes. One for each class, each one using the `identity function` for `h` then we apply a `softmax operation` the these `N` outputs and select the output with thte largest `softmax` value  
+  
+## Softmax
+
+Example: Suppose we have a datase with 4 classes (labeled 0, 1, 2, 3) `N=4` our network will have 4 output nodes each using the `identity function` for `h`. We select the largest value in this output vector as the class label for the given input. 
+
+Softmax ensures that the elements of this vector sum to 1. These are the probability of belonging to each of the four classes. That is why we take only the largest value.
+
+
+```
+softmax 179
+p_i = e^a_i / E_je^a_j
+```
+
+## Representing Weights and Biases
+
+We can view weights and biases in terms of matrices and vectors
+
+Weights and Biases of a NN can be stored in NumPy Arrays and we need only simple matrix operations `np.dot` and addition to work with a fully conencted NN.
+
+We need a `weight matrix` and a `bias vector` between each layer.
