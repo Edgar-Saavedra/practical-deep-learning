@@ -1,3 +1,7 @@
+# ------------------------------------------------
+# Data partinioning for custom NN
+# ------------------------------------------------
+
 # Implementing a simple NN
 # We will implement the sample NN and train it on 2 features from the iris dataset.
 # We will implement the NN from scratch but use sklearn to train it.
@@ -24,8 +28,12 @@ a = len(d1)
 b = len(d2)
 
 # 2 we're keeping only features 2 and 3 and put them in x
+# a+b will merge  the arrays
+# print(a+b, (a+b, 2))
+# make a vector of size a+b and with 2 feature columns
 x = np.zeros((a+b, 2))
 
+# make feature vector size to fit the length of either a,b and fill in with the data
 x[:a, :] = d1[:, 2:]
 x[a:, :] = d2[:, 2:]
 
@@ -51,13 +59,19 @@ d2 = d[np.where(l==2)]
 a = len(d1)
 b = len(d2)
 
+
 x = np.zeros((a+b, 2))
+
 x[:a, :] = d1[:, 2:]
 x[a:, :] = d2[:, 2:]
 
+# make array with 0's and 1's and turn into numpy array
 y = np.array([0]*a+[1]*b)
+# get random sample of data and labels
 i = np.argsort(np.random.random(a+b))
+
 x = x[i]
 y = y[i]
+# print(y)
 np.save("iris2_test.npy", x)
 np.save("iris2_test_labels.npy", y)

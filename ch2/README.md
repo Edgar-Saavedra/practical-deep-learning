@@ -1,3 +1,5 @@
+https://www.askpython.com/python/examples/colon-in-python
+
 - **we need python3**
 - if statements, vars ... python has no integer restrictions ... dynamicly typed vars 
 - ''' quotes are for documentation
