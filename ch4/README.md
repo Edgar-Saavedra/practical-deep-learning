@@ -150,3 +150,48 @@ See `ch_4_04_caculating_statitics.py`
 - Basic data prepartion techniques: 
   - Scale dat
   - dealing with missing features.
+
+## Supervised Learning
+
+- inputs go to module and model gives prediction
+- we have feature vector
+- Qualitative Feature
+  - Nominal Data - no inherite order
+    - Categories : (male, Female) (American, French etc...)
+    - No inherite order
+    - For nominal data we do 1 hot encoding
+      - if matches a category make that a 1 otherwise make it a 0
+  - Ordinal : Has some kind of order
+    - example : Good, great, bad
+  - Quantitative:
+    - numbers.
+    - Continous
+      - one number after another
+    - Discrete
+      - A set number of something.
+- Types of predictions
+  - Classifications
+    - predict deiscrete classes
+    - multiclass classification
+    - binary classification - either or
+  - Regression
+    - trying to predict continuous values.
+      - price of currency tomorrow
+      - temperature tomorrow.
+- How to make model learn?
+  -   Organizing data
+    - row : sample
+    - column : feature
+    - output
+    - feature vector, multiple columns in sample
+    - labels
+- Break up dataset
+  - feed training data set
+  - We figure out the Loss - what is the difference between value and prediction
+- Loss
+  - model with lowest loss maybe best
+  - types of loss functions
+    - L1 Loss : takes abs value, substracts prection and takes the abs back
+    - L2 Loss : Quadratic, if closs penalty is low if high penalty is high
+    - Binary Cross-Entropy Loss: Loss decreases and perfomance gets better.
+    
