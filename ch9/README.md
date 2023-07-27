@@ -3,7 +3,7 @@
 ## The Overall process
 
 1. First step in training a neural network is selecting `intelligent initial values` for the `weights` and `biases`.
-2. Then use `gradien descent` to modify these `weights` and `biases` so that we reduce the error over the training set.
+2. Then use `gradien descent` to modify these `weights` and `biases` so that we `reduce the error` over the `training set`.
 3. Use `average value` of the `loss function` to `measure the error` - tells us how wrong the network is.
 4. We know the network is right or wrong because we have the expected output for each input sample in the training set.
 
@@ -47,9 +47,9 @@ A change in a variable is noted as ∆ (delta)
 
 `m = ∆y/∆x`
 
-Most functions have a slope at each point. However the slope changes from point to point. `Tangent lines` are the lones that touch the function at one particullar point.
+Most functions have a slope at each point. However the slope changes from point to point. `Tangent lines` are the lines that touch the function at one particullar point.
 
-How the slope changes over the funciton is itself a funciton : `derivative`. Given a function and x value the derivative tells us the slope of te fucntion at a point x.
+How the slope changes over the funciton is itself a funciton : `derivative`. Given a function and x value the derivative tells us the slope of the fucntion at a point x.
 
 We want to find the `minimum of the function` - the x that gives us the smalles y. We want to move in the `opposite` direction to the gradient as that will move us in the directions fo the `minimum`
 
@@ -71,7 +71,7 @@ The `gradient` tells us in what direction to move.
 
 `local minimum` a low value that is not the `minimum`.
 
-The `gradient` tells us how small change in `x` changes `y`. If `x` is one of the parameters of our network and `y` is the error given by the `loss function` the the gradient tells us how much a change in that paramter affects the overall error. Once we know the error we are in a position to modify the paremeter by and amount based on the gradient - which will move us towards a minimum. When the error over the training set ist at a minimum we claim the network is trained.
+The `gradient` tells us how small change in `x` changes `y`. If `x` is one of the parameters of our network and `y` is the error given by the `loss function` the the gradient tells us how much a change in that paramter affects the overall error. Once we know the error we are in a position to modify the paremeter by and amount based on the gradient - which will move us towards a minimum. **When the error over the training set is at a minimum we claim the network is trained.**
 
 Every `weight` and `bias` in our network is a parameter, and the `loss function` value depends upon all of them. No matter the dimensions, if we know the gradient of each parameter we can still apply our algorithm in an attemp to locat a set of parameter minimizing the `loss function`.
 
@@ -86,13 +86,14 @@ We update each `weight` and `bias` by this rule:
 w - one of the weights (or bias)
 n - eta , the learning rate, ∆w gradient value
 
-### Algorithm training gradient descent
+
+### Algorithm training gradient descent 9-1
 
 ```
 1. Pick some intelligent starting values from the weights and biases
-2. Run the trainig set through the network using its current weights and biases and calcualte the average loss.
-3. Use this loss to get the gradient for each weight and bias.
-4. Update the weight or bias value by the step size times the gradient value.
+2. Average Loss: Run the trainig set through the network using its current weights and biases and calcualte the `average loss`.
+3. Gradient Descent: Use this loss to `get the gradient` for each weight and bias.
+4. Update Weights: Update the weight or bias value by the step size times the gradient value.
 5. Repeate from step 2 until loss is low enough
 ```
 
@@ -101,6 +102,36 @@ A succesfull NN relies  on choosing a good initial value.
 Step 2, is the `forward-pass` through the network 
 step 3 is a black box. 
 step 4 moves the parameter form its current value to one that will reduce the overall loss.
-There are other terms like `momentum` that preserv some fraction of the previous weight change for the next iteration, so that parameters don't change wildly.
 
+There are other terms like `momentum` that preserve some fraction of the previous weight change for the next iteration, so that parameters don't change wildly.
 
+### Stochastic Gradient Descent
+
+There are different flavors of gradient descent. Stochastic referes to a random process. 
+
+#### Batches And Mini Batches
+
+`Batch Trainig` to run the complete training set through the network using current values of the weights and biases. If our dataset is small, then batch training is good. But too big may cause longer training times. `Epoch` is passing the entire training set through the network. We often need dozens of epochs
+
+Stochastic Gradient Descent selects a small subset of the training data and use the average los calculated from it to update the parameters.
+
+We should be able to estimate the gradient of the loss function with a subset of the full training set.
+
+`Minibatch Training` Passing a subset through its training. A minibatch is the subset of the training data used for each stochastic gradient descent step, traiing is ususally some number of epochs.
+
+1 epoch = (# training samples / minibatch size) Minibatches
+
+* We dont really want to select minibatches at random. We run the risk of not using all the samples.
+* Typically we randomize the order of the training samples and select fixed sized blocks of samples, sequentially
+
+### Convex vs NonConvex Functions
+
+Technically we are applying an algorithm meant for a convex function to a non-convex one.
+
+`First-order optimization method` The first derivative. AKA 1 epoch
+
+Gradient Descent should not work with non-convex functions since it runs the risk of ending at a local minimum. Stochastic helps with this. There are often many, many local minimums Most gradient descent learning ends up in some kind of a minimum. 
+
+In practice we should use stochastic gradient dscent since it leads to better overall learning and reduces the training time by not requiring full batches. It also introduces the minibatch size parameter.
+
+### Ending Training
