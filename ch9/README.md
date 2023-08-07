@@ -115,7 +115,7 @@ There are different flavors of gradient descent. Stochastic referes to a random 
 
 Stochastic Gradient Descent selects a small subset of the training data and use the average los calculated from it to update the parameters.
 
-We should be able to estimate the gradient of the loss function with a subset of the full training set.
+We should be able to estimate the gradient of the `loss function` with a subset of the full training set.
 
 `Minibatch Training` Passing a subset through its training. A minibatch is the subset of the training data used for each stochastic gradient descent step, traiing is ususally some number of epochs.
 
@@ -135,3 +135,65 @@ Gradient Descent should not work with non-convex functions since it runs the ris
 In practice we should use stochastic gradient dscent since it leads to better overall learning and reduces the training time by not requiring full batches. It also introduces the minibatch size parameter.
 
 ### Ending Training
+
+If using SGD we tipically run the validation set throught network for each minibatch or set of minibatches to compute the accuracy. 
+
+When trainning for a long time, 2 things usually happen:
+  - First the error on the trainning set goes towards zero
+  - Second the erro on the validation set goes down and then eventually starts to go back up
+
+These effects are due to overfitting. 
+
+The training error goes down and down as the model learns more and more to represent the parent distribution. Eventually it will stop learning and overfitting.
+When overfitting the error on the validation set will begin to go up from a minimum value. What we can do is keep the weights and biases that producded the minimum value on the validation set and claim that those represent the best model.
+
+We dont want to use any data that has influenced training to measure the final effectiveness of our network.
+
+### Updating the learning rate
+
+1. we can choose to set 1 initial value.
+2. We can scale n (theta) so that it decreases with epochs (minibatches) according to 
+
+n = n0/tp ; n0 = set by the user t = itteration; p = exponent t. 
+
+Skelearn set by default p = 0.5 scaled by √t
+
+3. Adapt the learning rate by watching the loss function value. As long as the loss is decreasing leave the learning rate where it is.
+When the loss stops decreasing for a set number of minibatches divide the learning rate by a value like 5.
+If we never change the learning rate, and its too large, we might end up moving around the minimum without ever being able to reach it, since its constantly stepping over it.
+
+Its a good idea to decrease the learning rate when using SGD.
+
+### SGD - Momentum
+
+Using momentum for weight updated equation. Momentum adds back some fraction of the previous weight.
+A tipycal value for momentum is around 0.9.
+
+### Backpropagation
+
+Backpropagation algorithm iss essential. It enables the training of large networks with hundreds/thousands/millions/billions of parameters.
+
+It is an application fo the chain rule for derivatives. It works backward from the output layer of the network toward the input layer, propagating the error from the `loss function` down to each parameter of the network.
+
+#### Stochastic gradient descent with backprop
+
+```
+1. Pick some intelligent starting values for the weights and biases.
+2. FOWARD PASS: Run a minibatch through the network using its current weights and biases and calculate the average loss.
+3. BACKWARD PASS: Use this loss and backprop to get the gradient for each weight and bias.
+4. Update the weight or bias value by the step size times the gradient value.
+5. Repeate from step 2 until the loss is low enough.
+```
+
+In back propagation using derivatives there is the chain rule:
+
+dz/dx = dz/dy*dy/dx
+
+In NNs the output of one layer is the input to the next, which is composition. We want the values that tell us how the loss function changes with respect to the weights and biases.
+
+
+To use gradient descent we need to find how the loss changes with the weights. We need to find gradient values. This is where the `chain rule` comes into play. The get the `partial derivative` for the output layer parameter, we need only the output and the loss. We end up getting partial derivatives for each of the layer weights.
+
+After the `forward pass` we have numeric values for all the quantities on the right-hand side of these equations. Therefore we know the numeric value of the gradients.
+
+We need to use the `chainrule` the heart of the backpropagation algorithm to find the gradients we need to update the weights during training.
